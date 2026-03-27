@@ -12,6 +12,7 @@
     ./mako.nix
     ./rofi.nix
     ./waybar.nix
-    ./zsh.nix
+    # ./zsh.nix
+    ./fish.nix
   ];
 }

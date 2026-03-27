@@ -13,6 +13,8 @@ let
     bluetuith
     pulsemixer
     popsicle
+    fish
+    grc
   ];
 
   gui = with pkgs; [

@@ -1,16 +1,16 @@
-{ c, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  programs.zsh = {
+  programs.fish = {
     enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
 
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "sudo" "docker" "extract" ];
-    };
+    interactiveShellInit = ''
+      set -g fish_greeting ""
+
+      ${pkgs.atuin}/bin/atuin init fish | source
+
+      # fastfetch
+    '';
 
     shellAliases = {
       ls = "eza --icons --group-directories-first";
@@ -20,27 +20,40 @@
       cat = "bat";
       ff = "fastfetch";
       clean = "sudo nix-collect-garbage -d";
-      switch = "sudo nixos-rebuild switch --flake .#default";
+      nixsw = "sudo nixos-rebuild switch --flake .#default";
       upd = "nix flake update";
       add = "git add .";
-      cdn = "cd nixos";
+      cdn = "cd ~/nixos";
       tea = "ssh uchebnick@100.64.70.125";
       teacode = "ssh -N -L 18080:127.0.0.1:18080 uchebnick@100.64.70.125";
-      commit ="git commit -m 'update: $(date +%Y-%m-%d-%H:%M)'";
+      commit = "git commit -m \"update: $(date +%Y-%m-%d-%H:%M)\"";
       lg = "lazygit";
+
+        sync = "git add . && git commit -m 'sync: $(date +%H:%M)' && git push origin main && sudo nixos-rebuild switch --flake .#default";
+
+        rm = "rm -i";
+
+        h = "history | grep";
+
+        ".." = "cd ..";
+        "..." = "cd ../..";
+
+        top = "btop";
+
+        nix-logs = "journalctl -u nixos-rebuild --since '10 minutes ago'";
+
+        grep = "rg";
     };
 
-    initExtra = ''
-      # zstyle ':completion:*' list-colors "di=38;2;${c.blue}:ln=38;2;${c.teal}:ex=38;2;${c.green}"
-
-      # PROMPT='%F{${c.green}}%n%f%F{${c.yellow}}@%f%F{${c.blue}}%m%f %F{${c.red}}%~>%f '
-
-      eval "$(atuin init zsh)"
-    '';
+    plugins = [
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "done"; src = pkgs.fishPlugins.done.src; }
+    ];
   };
 
   programs.starship = {
     enable = true;
+    enableFishIntegration = true;
     settings = {
       format = "$username$hostname$directory$git_branch$character";
 
@@ -64,6 +77,12 @@
       character = {
         success_symbol = "[~>](bold green)";
         error_symbol = "[~>](bold red)";
+      };
+
+      git_branch = {
+        symbol = " ";
+        format = "[$symbol$branch]($style) ";
+        style = "bold purple";
       };
     };
   };
