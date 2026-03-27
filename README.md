@@ -13,7 +13,7 @@
  - Terminal: [**`Kitty`**](https://sw.kovidgoyal.net/kitty/)
  - App Launcher: [**`Rofi`**](https://github.com/davatorium/rofi)
  - Notify Daemon: [**`Mako`**](https://github.com/emersion/mako)
- - Shell: [**`Zsh`**](https://www.zsh.org/)
+ - Shell: [**`Fish`**](https://fishshell.com/)
 
 </br>
 
