@@ -97,14 +97,14 @@ sudo nixos-rebuild switch --flake .#default
 * **Toggle floating** - `super + W`
 <!-- -->
 * **Go to workspace** - `super + x`, where `x` is workspace number, for 10th use key 0
-* **Move active window to worspace** - `super + Shift + x`
-* **Move active window to worspace silent(without showing)** - `super + Alt + x`
+* **Move active window to workspace** - `super + Shift + x`
+* **Move active window to workspace silent(without showing)** - `super + Alt + x`
 * **Move focus** - `super + arrows`
 * **Resize window** - `super + SHIFT + arrows`
 * **Move window** - `super + Ctrl + arrows`
 <!-- -->
 * **Toggle special workspace** - `super + S`
-* **Move active window to special worlspace** - `super + Shift + S`
+* **Move active window to special workspace** - `super + Shift + S`
 * **Move active window to special workspace silent** - `super + Alt + S`
 <!-- -->
 * **Move window with mouse** - `super + Mouse 1`
