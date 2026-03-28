@@ -15,6 +15,7 @@ let
     popsicle
     fish
     grc
+    qalculate-gtk
   ];
 
   gui = with pkgs; [
@@ -49,6 +50,29 @@ let
     neovim
     lazygit
     gh
+
+    # SYSTEM
+    gcc
+    pkg-config
+    openssl
+    binutils
+    gnumake
+
+    # RUST
+    (rust-bin.stable.latest.default.override {
+     extensions = [
+       "rust-src"
+       "rust-analyzer"
+       "clippy"
+       "rustfmt"
+     ];
+    })
+
+    # PYTHON
+    python3
+    pyright
+    black
+
   ];
 
   web = with pkgs; [

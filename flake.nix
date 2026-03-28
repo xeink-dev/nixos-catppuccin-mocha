@@ -8,12 +8,22 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, stylix, rust-overlay, ... }@inputs:
+  let
+    system = "x86_64-linux";
+
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [ (import rust-overlay) ];
+      config.allowUnfree = true;
+    };
+  in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs;
+        inherit inputs pkgs;
         c = import ./home/xeink/mocha.nix;
       };
       modules = [
@@ -24,7 +34,7 @@
 	  home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs pkgs;
             c = import ./home/xeink/mocha.nix;
           };
           home-manager.users.xeink = import ./home/home.nix;

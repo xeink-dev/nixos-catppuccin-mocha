@@ -65,7 +65,7 @@
         float_gaps = 20;
         gaps_out = 5;
         "col.inactive_border" = lib.mkForce "rgba(${lib.removePrefix "#" c.base}ff)";
-        "col.active_border" = lib.mkForce "rgba(${lib.removePrefix "#" c.mauve}ff) rgba(${lib.removePrefix "#" c.flamingo}ff) 90deg";
+        "col.active_border" = lib.mkForce "rgba(${lib.removePrefix "#" c.mauve}ff) rgba(${lib.removePrefix "#" c.rosewater}ff) 90deg";
         layout = "dwindle";
         no_focus_fallback = false;
         resize_on_border = false;
@@ -175,7 +175,7 @@
       bind = [
         "$main, Return, exec, $terminal"
         "$main, B, exec, $browser"
-        "$main, C, exec, $code"
+        "$main, Z, exec, $code"
         "$main, E, exec, $explorer"
         "$main, A, exec, rofi -show drun"
         "$main, L, exec, hyprlock"
@@ -183,6 +183,7 @@
         "$main, O, exec, obsidian"
         "$main, N, exec, $monitoring"
         "$main, V, exec, $vpn"
+        "$main, C, exec, qalculate-gtk"
 
         "$main, Print, exec, grim - | swappy -f -"
         ", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"
