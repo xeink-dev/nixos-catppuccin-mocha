@@ -66,4 +66,46 @@ sudo nixos-rebuild switch --flake .#default
 
 <!-- HOTKEYS -->
 ## 💻 HotKeys
+### Apps
 * **Open the terminal** - `super + enter`
+* **Open browser** - `super + B`
+* **Open code editor** - `super + Z`
+* **Open explorer** - `super + E`
+* **Open rofi** - `super + A`
+* **Lock screen** - `super + L`
+* **Open messanger** - `super + M`
+* **Open obsidian** - `super + O`
+* **Open monitoring** - `super + N`
+* **Open VPN client** - `super + V`
+* **Open calculator** - `super + C`
+### System
+* **Take a screenshot of part of the screen** - `Prt Sc`
+* **Take a screenshot of whole monitor** - `super + Prt Sc`
+* **Pick a color** - `main + Shift + Prt Sc`
+<!-- -->
+* **Open network connections** - `super + I`
+* **Open bluetooth connections** - `super + T`
+* **Open sound control** - `super + P`
+<!-- -->
+* **Reboot system** - `super + CTRL + R`
+* **Shut down system** - `super + CTRL + P`
+<!-- -->
+* **Change keyboard layout** - `Caps Lock`
+### Window management
+* **Close active window** - `super + Q`
+* **Toggle fullscreen** - `super + F`
+* **Toggle floating** - `super + W`
+<!-- -->
+* **Go to workspace** - `super + x`, where `x` is workspace number, for 10th use key 0
+* **Move active window to worspace** - `super + Shift + x`
+* **Move active window to worspace silent(without showing)** - `super + Alt + x`
+* **Move focus** - `super + arrows`
+* **Resize window** - `super + SHIFT + arrows`
+* **Move window** - `super + Ctrl + arrows`
+<!-- -->
+* **Toggle special workspace** - `super + S`
+* **Move active window to special worlspace** - `super + Shift + S`
+* **Move active window to special workspace silent** - `super + Alt + S`
+<!-- -->
+* **Move window with mouse** - `super + Mouse 1`
+* **Resize window with mosue** - `super + Mouse 2`

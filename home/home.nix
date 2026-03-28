@@ -76,10 +76,10 @@ let
   ];
 
   web = with pkgs; [
-    firefox
     chromium
     ayugram-desktop
     qbittorrent
+
   ];
 
   media = with pkgs; [

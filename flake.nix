@@ -9,9 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay.url = "github:oxalica/rust-overlay";
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, rust-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, stylix, rust-overlay, ... }@inputs:
   let
     system = "x86_64-linux";
 
@@ -29,16 +30,16 @@
       modules = [
         stylix.nixosModules.stylix
       	./hosts/default/default.nix
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager.useGlobalPkgs = true;
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             inherit inputs pkgs;
             c = import ./home/xeink/mocha.nix;
           };
           home-manager.users.xeink = import ./home/home.nix;
-	}
+        }
       ];
     };
   };

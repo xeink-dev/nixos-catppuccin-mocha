@@ -3,6 +3,7 @@
 {
   services.mako = lib.mkForce {
     enable = true;
+    defaultTimeout = 5000;
     settings = {
       font = "JetBrainsMono Nerd Font 10";
       width = 300;
