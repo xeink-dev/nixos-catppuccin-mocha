@@ -6,10 +6,10 @@
     ./printing.nix
     ./disk.nix
     ./bluetooth.nix
-    ./throne.nix
+    ./vpn.nix
     ./sddm.nix
     ./tailscale.nix
-    # ./flclashx.nix
-    # ./steam.nix
+    # ./ai.nix
+    ./steam.nix
   ];
 }

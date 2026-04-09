@@ -77,7 +77,7 @@ sudo nixos-rebuild switch --flake .#default
 * **Open obsidian** - `super + O`
 * **Open monitoring** - `super + N`
 * **Open VPN client** - `super + V`
-* **Open calculator** - `super + C`
+* **Open IDE** - `super + C`
 ### System
 * **Take a screenshot of part of the screen** - `Prt Sc`
 * **Take a screenshot of whole monitor** - `super + Prt Sc`

@@ -8,7 +8,7 @@
       set -g fish_greeting ""
 
       ${pkgs.atuin}/bin/atuin init fish | source
-
+      fish_add_path -m ~/.cargo/bin
       # fastfetch
     '';
 

@@ -47,9 +47,11 @@ let
 
   dev = with pkgs; [
     zed-editor
+    vscode
     neovim
     lazygit
     gh
+    bun
 
     # SYSTEM
     gcc
@@ -73,19 +75,26 @@ let
     pyright
     black
 
+    # GO
+    go
+    gopls
+    gotools
+
   ];
 
   web = with pkgs; [
     chromium
     ayugram-desktop
     qbittorrent
-
+    tor-browser
   ];
 
   media = with pkgs; [
     kdePackages.okular
     imv
     mpv
+    kdePackages.kdenlive
+    gimp2-with-plugins
   ];
 
   daily = with pkgs; [

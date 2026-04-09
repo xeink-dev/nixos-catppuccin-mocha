@@ -17,7 +17,8 @@
       "$terminal" = "kitty";
       "$explorer" = "nemo";
       "$browser" = "firefox";
-      "$code" = "zeditor";
+      "$editor" = "zeditor";
+      "$code" = "code";
       "$vpn" = "Throne";
       "$messanger" = "AyuGram";
       "$monitoring" = "kitty btop";
@@ -175,7 +176,7 @@
       bind = [
         "$main, Return, exec, $terminal"
         "$main, B, exec, $browser"
-        "$main, Z, exec, $code"
+        "$main, Z, exec, $editor"
         "$main, E, exec, $explorer"
         "$main, A, exec, rofi -show drun"
         "$main, L, exec, hyprlock"
@@ -183,7 +184,8 @@
         "$main, O, exec, obsidian"
         "$main, N, exec, $monitoring"
         "$main, V, exec, $vpn"
-        "$main, C, exec, qalculate-gtk"
+        "$main, C, exec, $code"
+        "$main Shift, Y, exec, ~/Downloads/mindustry-linux-64-bit-unstable/Mindustry"
 
         "$main, Print, exec, grim - | swappy -f -"
         ", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"
