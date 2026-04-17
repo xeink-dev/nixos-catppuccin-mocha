@@ -22,6 +22,7 @@
       "$vpn" = "Throne";
       "$messanger" = "AyuGram";
       "$monitoring" = "kitty btop";
+      "$gaming" = "steam";
 
       #################
       ### AUTOSTART ###
@@ -176,6 +177,7 @@
       bind = [
         "$main, Return, exec, $terminal"
         "$main, B, exec, $browser"
+        "$main Shift, B, exec, chromium"
         "$main, Z, exec, $editor"
         "$main, E, exec, $explorer"
         "$main, A, exec, rofi -show drun"
@@ -185,7 +187,10 @@
         "$main, N, exec, $monitoring"
         "$main, V, exec, $vpn"
         "$main, C, exec, $code"
-        "$main Shift, Y, exec, ~/Downloads/mindustry-linux-64-bit-unstable/Mindustry"
+        "$main, G, exec, $gaming"
+        "$main, Y, exec, ~/Downloads/mindustry-linux-64-bit/Mindustry"
+
+        "$main Shift, S, exec, okular ~/abyss/files/progintro_2_91_v1.pdf"
 
         "$main, Print, exec, grim - | swappy -f -"
         ", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"

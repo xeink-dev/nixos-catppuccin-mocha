@@ -1,9 +1,12 @@
 { pkgs, ... }:
 
 {
+
+  services.xserver.enable = true;
+
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    # wayland.enable = true;
 
     theme = "catppuccin-sddm-corners";
 
@@ -15,13 +18,15 @@
         CursorTheme = "catppuccin-mocha-rosewater-cursors";
       };
     };
+
+    extraPackages = with pkgs; [
+      kdePackages.qt5compat
+      kdePackages.qtdeclarative
+      kdePackages.qtsvg
+    ];
   };
 
   environment.systemPackages = with pkgs; [
     catppuccin-sddm-corners
-
-    libsForQt5.qt5.qtgraphicaleffects
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtsvg
   ];
 }

@@ -7,7 +7,7 @@
     ./network.nix
     ./clean.nix
     ./shell.nix
-    ./tlp.nix
+    # ./tlp.nix
     ./nix-ld.nix
   ];
 }

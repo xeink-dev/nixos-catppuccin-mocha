@@ -1,0 +1,14 @@
+[2026-04-17 14:21:32PM] [INFO] Opened new session on nixos:xeink
+[2026-04-17 14:21:32PM] [DEBUG] Starting new HTTPS connection (1): api.github.com:443
+[2026-04-17 14:21:35PM] [DEBUG] https://api.github.com:443 "GET /repos/bellingcat/octosuite/releases/latest HTTP/1.1" 200 689
+[2026-04-17 14:21:35PM] [DEBUG] entering code: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering fence: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering blockquote: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering hr: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering list: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering reference: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering html_block: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering heading: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering lheading: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:35PM] [DEBUG] entering paragraph: StateBlock(line=0,level=0,tokens=0), 0, 1, False
+[2026-04-17 14:21:53PM] [INFO] Session closed at 2026-04-17 14:21:53.895958.

@@ -9,6 +9,7 @@ let
     eza
     yazi
     ouch
+    peazip
     kdePackages.ark
     bluetuith
     pulsemixer
@@ -78,7 +79,6 @@ let
     # GO
     go
     gopls
-    gotools
 
   ];
 
@@ -87,19 +87,20 @@ let
     ayugram-desktop
     qbittorrent
     tor-browser
+    discord
   ];
 
   media = with pkgs; [
     kdePackages.okular
-    imv
-    mpv
+    eog
+    vlc
     kdePackages.kdenlive
     gimp2-with-plugins
   ];
 
   daily = with pkgs; [
     obsidian
-    vitetris
+    libreoffice
   ];
 in
 

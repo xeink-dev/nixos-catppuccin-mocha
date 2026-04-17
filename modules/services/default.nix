@@ -10,6 +10,6 @@
     ./sddm.nix
     ./tailscale.nix
     # ./ai.nix
-    ./steam.nix
+    ./gaming.nix
   ];
 }
