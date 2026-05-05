@@ -3,7 +3,6 @@
 {
   programs.waybar = lib.mkForce {
     enable = true;
-    systemd.enable = true;
     settings = {
       mainBar = {
         height = 10;
@@ -71,7 +70,7 @@
           format = "<span color='${c.lavender}'>󰌏</span> {}";
           format-en = "EN";
           format-ru = "RU";
-          };
+        };
 
 
         "pulseaudio" = {

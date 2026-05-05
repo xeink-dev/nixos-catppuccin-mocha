@@ -4,7 +4,7 @@
   imports = [
     ./audio.nix
     ./fonts.nix
-    ./hyprland.nix
+    ./wm.nix
     ./stylix.nix
   ];
 }

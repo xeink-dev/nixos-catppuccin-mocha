@@ -14,5 +14,7 @@
     ./waybar.nix
     # ./zsh.nix
     ./fish.nix
+    # ./niri.nix
+    ./hyprpaper.nix
   ];
 }

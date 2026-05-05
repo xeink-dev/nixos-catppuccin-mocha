@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./firefox.nix
+    # ./firefox.nix
     # ./librewolf.nix
+    ./tridactyl.nix
   ];
 }

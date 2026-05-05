@@ -8,8 +8,8 @@
     ./bluetooth.nix
     ./vpn.nix
     ./sddm.nix
-    ./tailscale.nix
+    # ./tailscale.nix
     # ./ai.nix
-    ./gaming.nix
+    # ./gaming.nix
   ];
 }

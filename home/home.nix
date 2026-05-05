@@ -17,6 +17,7 @@ let
     fish
     grc
     qalculate-gtk
+    bottles
   ];
 
   gui = with pkgs; [
@@ -29,7 +30,7 @@ let
     waybar
     hypridle
     hyprlock
-    swaybg
+    hyprpaper
     hyprpicker
     wl-clipboard
     playerctl
@@ -53,13 +54,11 @@ let
     lazygit
     gh
     bun
+    pencil
 
     # SYSTEM
-    gcc
     pkg-config
     openssl
-    binutils
-    gnumake
 
     # RUST
     (rust-bin.stable.latest.default.override {
@@ -80,14 +79,27 @@ let
     go
     gopls
 
+    # FREE PASCAL
+    fpc
+
+    # ASSEMBLER
+    nasm
+    binutils
+    gdb
+
+    # C & C++
+    gcc
+    clang-tools
+    gnumake
+
   ];
 
   web = with pkgs; [
+    firefox
     chromium
     ayugram-desktop
     qbittorrent
     tor-browser
-    discord
   ];
 
   media = with pkgs; [
@@ -96,6 +108,7 @@ let
     vlc
     kdePackages.kdenlive
     gimp2-with-plugins
+    youtube-music
   ];
 
   daily = with pkgs; [

@@ -1,337 +1,343 @@
 { c, pkgs, lib, ... }:
-
+let
+  unhash = hex: builtins.substring 1 (builtins.stringLength hex) hex;
+in
 {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    settings = {
+  wayland.windowManager.hyprland.enable = true;
+
+  xdg.configFile."hypr/hyprland.conf".text = ''
 
       ################
       ### MONITORS ###
       ################
 
-      "monitor" = ",preferred,auto,auto";
+      monitor=,preferred,auto,auto
 
       ###################
       ### MY PROGRAMS ###
       ###################
-      "$terminal" = "kitty";
-      "$explorer" = "nemo";
-      "$browser" = "firefox";
-      "$editor" = "zeditor";
-      "$code" = "code";
-      "$vpn" = "Throne";
-      "$messanger" = "AyuGram";
-      "$monitoring" = "kitty btop";
-      "$gaming" = "steam";
+      $terminal = kitty
+      $explorer = nemo
+      $browser = firefox
+      $code = zeditor
+      $vpn = Throne
+      $messanger = AyuGram
+      $monitoring = kitty btop
+      $music = pear-desktop
 
       #################
       ### AUTOSTART ###
       #################
-      "exec-once" = [
-        "swaybg -m fill -i ~/nixos/home/xeink/dotfiles/SPACE/wall.png"
-        "mako"
-        "hypridle"
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-        "$vpn"
-      ];
+
+      exec-once = hyprpaper
+      exec-once = waybar
+      exec-once = mako
+      exec-once = hypridle
+      exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+      exec-once = $vpn
 
       #############################
       ### ENVIRONMENT VARIABLES ###
       #############################
 
-      env = [
-              "QT_QPA_PLATFORMTHEME,kvantum"
-              "QT_STYLE_OVERRIDE,kvantum"
-              "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-              "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+      env = QT_QPA_PLATFORMTHEME,kvantum
+      env = QT_STYLE_OVERRIDE,kvantum
+      env = QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      env = QT_AUTO_SCREEN_SCALE_FACTOR="1"
 
-              "XDG_CURRENT_DESKTOP,Hyprland"
-              "XDG_SESSION_TYPE,wayland"
-              "XDG_SESSION_DESKTOP,Hyprland"
+      env = XDG_CURRENT_DESKTOP="Hyprland"
+      env = XDG_SESSION_TYPE="wayland"
+      env = XDG_SESSION_DESKTOP="Hyprland"
 
-              "GDK_BACKEND,wayland,x11,*"
-              "QT_QPA_PLATFORM,wayland;xcb"
+      env = GDK_BACKEND="wayland,x11,*"
+      env = QT_QPA_PLATFORM="waylandxcb"
 
-              "NIXOS_OZONE_WL,1"
-              "ELECTRON_OZONE_PLATFORM_HINT,auto"
-            ];
+      env = NIXOS_OZONE_WL="1"
+      env = ELECTRON_OZONE_PLATFORM_HINT,auto
+
 
 
       #####################
       ### LOOK AND FEEL ###
       #####################
 
-      general = {
-        border_size = 1;
-        gaps_in = 5;
-        float_gaps = 20;
-        gaps_out = 5;
-        "col.inactive_border" = lib.mkForce "rgba(${lib.removePrefix "#" c.base}ff)";
-        "col.active_border" = lib.mkForce "rgba(${lib.removePrefix "#" c.mauve}ff) rgba(${lib.removePrefix "#" c.rosewater}ff) 90deg";
-        layout = "dwindle";
-        no_focus_fallback = false;
-        resize_on_border = false;
-        allow_tearing = false;
+      general {
+        border_size = 1
+        gaps_in = 5
+        float_gaps = 20
+        gaps_out = 5
+        col.inactive_border = rgba(${unhash c.base}ff)
+        col.active_border = rgba(${unhash c.mauve}ff) rgba(${unhash c.rosewater}ff) 90deg
+        layout = dwindle
+        no_focus_fallback = false
+        resize_on_border = false
+        allow_tearing = false
 
-        snap = {
-          enabled = true;
-                  window_gap = 10;
-                  monitor_gap = 10;
-          border_overlap = false;
-          respect_gaps = true;
-          };
-      };
+        snap {
+          enabled = true
+          window_gap = 10
+          monitor_gap = 10
+          border_overlap = false
+          respect_gaps = true
+        }
+      }
 
-      decoration = {
-        rounding = 10;
-        active_opacity = 1.0;
-        inactive_opacity = 1.0;
-        fullscreen_opacity = 1.0;
-        dim_modal = false;
-        dim_inactive = false;
-        dim_strength = 0.5;
-        dim_special = 0.5;
-        dim_around = 0.5;
-        border_part_of_window = true;
+      decoration {
+        rounding = 10
+        active_opacity = 1.0
+        inactive_opacity = 1.0
+        fullscreen_opacity = 1.0
+        dim_modal = false
+        dim_inactive = false
+        dim_strength = 0.5
+        dim_special = 0.5
+        dim_around = 0.5
+        border_part_of_window = true
 
-        shadow = {
-          enabled = false;
-          range = 4;
-          render_power = 3;
-          # color = rgba(1a1a1aee);
-        };
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-          ignore_opacity = true;
-          new_optimizations = true;
-          xray = false;
-          noise = 0.0117;
-          contrast = 0.8916;
-          brightness = 0.8172;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
-          special = true;
-          popups = false;
-          popups_ignorealpha = 0.2;
-          input_methods = false;
-          input_methods_ignorealpha = 0.2;
-          };
-      };
+        shadow {
+          enabled = false
+          range = 4
+          render_power = 3
+          # color = rgba(1a1a1aee)
+        }
+        blur {
+          enabled = true
+          size = 3
+          passes = 1
+          ignore_opacity = true
+          new_optimizations = true
+          xray = false
+          noise = 0.0117
+          contrast = 0.8916
+          brightness = 0.8172
+          vibrancy = 0.1696
+          vibrancy_darkness = 0.0
+          special = true
+          popups = false
+          popups_ignorealpha = 0.2
+          input_methods = false
+          input_methods_ignorealpha = 0.2
+          }
+      }
 
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
-      };
+      animations {
+        enabled = true
+        bezier = myBezier, 0.05, 0.9, 0.1, 1.05
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
+        animation = windows, 1, 7, myBezier
+        animation = windowsOut, 1, 7, default, popin 80%
+        animation = border, 1, 10, default
+        animation = borderangle, 1, 8, default
+        animation = fade, 1, 7, default
+        animation = workspaces, 1, 6, default
+      }
+
+      dwindle {
+        pseudotile = true
+        preserve_split = true
+      }
 
       #############
       ### INPUT ###
       #############
 
-      input = {
-        kb_layout = "us,ru";
-        kb_options = "caps:none";
+      input {
+        kb_layout = us,ru
+        kb_options = caps:none
 
-        repeat_rate = 40;
-        repeat_delay = 200;
-        follow_mouse = 1;
-        off_window_axis_events = 2;
+        repeat_rate = 40
+        repeat_delay = 200
+        follow_mouse = 1
+        off_window_axis_events = 2
 
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
-          middle_button_emulation = true;
-        };
-      };
+        touchpad {
+          natural_scroll = true
+          # disable_while_typing = true
+          middle_button_emulation = true
+        }
+      }
 
-      # gestures = [ "3, horizontal, workspace" ];
-
-      gestures = {
-        workspace_swipe_distance = 300;
-        workspace_swipe_invert = true;
-        workspace_swipe_min_speed_to_force = 30;
-        workspace_swipe_cancel_ratio = 0.5;
-        workspace_swipe_forever = true;
-      };
+      # gestures = 3, horizontal, workspace
 
       ###################
       ### KEYBINDINGS ###
       ###################
 
-      "$main" = "SUPER";
+      $main = SUPER
 
-      bind = [
-        "$main, Return, exec, $terminal"
-        "$main, B, exec, $browser"
-        "$main Shift, B, exec, chromium"
-        "$main, Z, exec, $editor"
-        "$main, E, exec, $explorer"
-        "$main, A, exec, rofi -show drun"
-        "$main, L, exec, hyprlock"
-        "$main, M, exec, $messanger"
-        "$main, O, exec, obsidian"
-        "$main, N, exec, $monitoring"
-        "$main, V, exec, $vpn"
-        "$main, C, exec, $code"
-        "$main, G, exec, $gaming"
-        "$main, Y, exec, ~/Downloads/mindustry-linux-64-bit/Mindustry"
+      # Apps
 
-        "$main Shift, S, exec, okular ~/abyss/files/progintro_2_91_v1.pdf"
+      bind = $main, Return, exec, $terminal
+      bind = $main, B, exec, $browser
+      bind = $main ALT, B, exec, chromium
+      bind = $main, C, exec, $code
+      bind = $main, E, exec, $explorer
+      bind = $main, A, exec, rofi -show drun
+      bind = $main CTRL, L, exec, hyprlock
+      bind = $main, M, exec, $messanger
+      bind = $main, O, exec, obsidian
+      bind = $main, N, exec, $monitoring
+      bind = $main, V, exec, $vpn
+      bind = $main, Y, exec, $music
 
-        "$main, Print, exec, grim - | swappy -f -"
-        ", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"
-        "$main SHIFT, Print, exec, hyprpicker -a"
+      # System
 
-        "$main, I, exec, $terminal nmtui"
-        "$main, T, exec, $terminal bluetuith"
-        "$main, P, exec, $terminal pulsemixer"
+      bind = $main, Print, exec, grim - | swappy -f -
+      bind = , Print, exec, grim -g "$(slurp)" - | swappy -f -
+      bind = $main SHIFT, Print, exec, hyprpicker -a
 
-        "bind = $main CTRL, R, exec, reboot"
-        "bind = $main CTRL, P, exec, poweroff"
+      bind = $main, I, exec, $terminal nmtui
+      bind = $main, T, exec, $terminal bluetuith
+      bind = $main, P, exec, $terminal pulsemixer
 
-        "$main, Q, killactive,"
-        "$main SHIFT, Q, exec, hyprctl clients -j | jq -r \".[] | select(.workspace.id == $(hyprctl activeworkspace -j | jq '.id')) | .address\" | xargs -I {} hyprctl dispatch closewindow address:{}"
-        "$main, Delete, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
-        "$main, F, fullscreen"
-        "$main, W, togglefloating,"
-        "$main, J, togglesplit"
+      bind = bind = $main ALT, R, exec, reboot
+      bind = bind = $main ALT, P, exec, poweroff
 
-        # Workspaces
-        "$main, 1, workspace, 1"
-        "$main, 2, workspace, 2"
-        "$main, 3, workspace, 3"
-        "$main, 4, workspace, 4"
-        "$main, 5, workspace, 5"
-        "$main, 6, workspace, 6"
-        "$main, 7, workspace, 7"
-        "$main, 8, workspace, 8"
-        "$main, 9, workspace, 9"
-        "$main, 0, workspace, 10"
+      bind = $main, Q, killactive,
+      bind = $main Alt, Q, exec, hyprctl clients -j | jq -r \".[] | select(.workspace.id == $(hyprctl activeworkspace -j | jq '.id')) | .address\" | xargs -I {} hyprctl dispatch closewindow address:{}
+      bind = $main, Delete, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit
 
-        # Move window
-        "$main CTRL, left,  movewindow, l"
-        "$main CTRL, right, movewindow, r"
-        "$main CTRL, up,    movewindow, u"
-        "$main CTRL, down,  movewindow, d"
+      bindl = , code:66, exec, hyprctl switchxkblayout current next
+      bindl = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      bindl = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-        # Focus
-        "$main, left,  movefocus, l"
-        "$main, right, movefocus, r"
-        "$main, up,    movefocus, u"
-        "$main, down,  movefocus, d"
+      bindel = , XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+      bindel = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
-        # Move to workspace
-        "$main SHIFT, 1, movetoworkspace, 1"
-        "$main SHIFT, 2, movetoworkspace, 2"
-        "$main SHIFT, 3, movetoworkspace, 3"
-        "$main SHIFT, 4, movetoworkspace, 4"
-        "$main SHIFT, 5, movetoworkspace, 5"
-        "$main SHIFT, 6, movetoworkspace, 6"
-        "$main SHIFT, 7, movetoworkspace, 7"
-        "$main SHIFT, 8, movetoworkspace, 8"
-        "$main SHIFT, 9, movetoworkspace, 9"
-        "$main SHIFT, 0, movetoworkspace, 10"
+      bindel = , XF86MonBrightnessUp, exec, brightnessctl set 5%+
+      bindel = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
 
-        # Move to workspace silent
-        "$main ALT, 1, movetoworkspacesilent, 1"
-        "$main ALT, 2, movetoworkspacesilent, 2"
-        "$main ALT, 3, movetoworkspacesilent, 3"
-        "$main ALT, 4, movetoworkspacesilent, 4"
-        "$main ALT, 5, movetoworkspacesilent, 5"
-        "$main ALT, 6, movetoworkspacesilent, 6"
-        "$main ALT, 7, movetoworkspacesilent, 7"
-        "$main ALT, 8, movetoworkspacesilent, 8"
-        "$main ALT, 9, movetoworkspacesilent, 9"
-        "$main ALT, 0, movetoworkspacesilent, 10"
+      # Focus
 
-        # Special workspace
-        "$main, S, togglespecialworkspace, magic"
-        "$main SHIFT, S, movetoworkspace, special:magic"
-        "$main ALT, S, movetoworkspacesilent, special:magic"
+      bind = $main, L, movefocus, l
+      bind = $main, H, movefocus, r
+      bind = $main, K, movefocus, u
+      bind = $main, J, movefocus, d
 
-        # Scroll through workspaces
-        "$main, mouse_down, workspace, e+1"
-        "$main, mouse_up, workspace, e-1"
-      ];
+      # Move window
 
-      bindm = [
-        "$main, mouse:272, movewindow"
-        "$main, mouse:273, resizewindow"
-      ];
+      bind = $main ALT, H, movewindow, l
+      bind = $main ALT, L, movewindow, r
+      bind = $main ALT, K, movewindow, u
+      bind = $main ALT, J, movewindow, d
 
-      bindl = [
-        ", code:66, exec, hyprctl switchxkblayout current next"
+      # Resize
 
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ];
+      binde = $main SHIFT, L, resizeactive, 20 0
+      binde = $main SHIFT, H, resizeactive, -20 0
+      binde = $main SHIFT, K, resizeactive, 0 -20
+      binde = $main SHIFT, J, resizeactive, 0 20
 
-      binde = [
-        "$main SHIFT, right, resizeactive, 20 0"
-        "$main SHIFT, left,  resizeactive, -20 0"
-        "$main SHIFT, up,    resizeactive, 0 -20"
-        "$main SHIFT, down,  resizeactive, 0 20"
-      ];
+      # States
 
-      bindel = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      bind = $main, F, fullscreen
+      bind = $main, D, togglefloating,
+      bind = $main, G, togglesplit
 
-        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-      ];
+      # Workspaces
 
+      bind = $main, 1, workspace, 1
+      bind = $main, 2, workspace, 2
+      bind = $main, 3, workspace, 3
+      bind = $main, 4, workspace, 4
+      bind = $main, 5, workspace, 5
+      bind = $main, 6, workspace, 6
+      bind = $main, 7, workspace, 7
+      bind = $main, 8, workspace, 8
+      bind = $main, 9, workspace, 9
+      bind = $main, 0, workspace, 10
+
+      # Move to workspace
+
+      bind = $main ALT, 1, movetoworkspace, 1
+      bind = $main ALT, 2, movetoworkspace, 2
+      bind = $main ALT, 3, movetoworkspace, 3
+      bind = $main ALT, 4, movetoworkspace, 4
+      bind = $main ALT, 5, movetoworkspace, 5
+      bind = $main ALT, 6, movetoworkspace, 6
+      bind = $main ALT, 7, movetoworkspace, 7
+      bind = $main ALT, 8, movetoworkspace, 8
+      bind = $main ALT, 9, movetoworkspace, 9
+      bind = $main ALT, 0, movetoworkspace, 10
+
+      # Move to workspace silent
+
+      bind = $main CTRL, 1, movetoworkspacesilent, 1
+      bind = $main CTRL, 2, movetoworkspacesilent, 2
+      bind = $main CTRL, 3, movetoworkspacesilent, 3
+      bind = $main CTRL, 4, movetoworkspacesilent, 4
+      bind = $main CTRL, 5, movetoworkspacesilent, 5
+      bind = $main CTRL, 6, movetoworkspacesilent, 6
+      bind = $main CTRL, 7, movetoworkspacesilent, 7
+      bind = $main CTRL, 8, movetoworkspacesilent, 8
+      bind = $main CTRL, 9, movetoworkspacesilent, 9
+      bind = $main CTRL, 0, movetoworkspacesilent, 10
+
+      # Special workspace
+
+      bind = $main, S, togglespecialworkspace, magic
+      bind = $main ALT, S, movetoworkspace, special:magic
+      bind = $main CTRL, S, movetoworkspacesilent, special:magic
+
+      # Scroll through workspaces
+
+      bindm = $main, mouse:272, movewindow
+      bindm = $main, mouse:273, resizewindow
+
+      bind = $main, mouse_down, workspace, e+1
+      bind = $main, mouse_up, workspace, e-1
 
       ##############################
       ### WINDOWS AND WORKSPACES ###
       ##############################
 
-      windowrulev2 = [
-        #"float, class:^($vpn)$"
-        #"center, class:^($vpn)$"
+      windowrule {
+          name = Throne
+          match:class = ^($vpn)$
+          float = true
+          center = true
+          size = (monitor_w*0.5) (monitor_h*0.75)
+      }
 
-       #"float,class:^(nm-connection-editor)$"
-       #"center,class:^(nm-connection-editor)$"
-       #"size 600 500,class:^(nm-connection-editor)$"
 
-       #"float,class:^(blueman-manager)$"
-       #"center,class:^(blueman-manager)$"
+      windowrule {
+        name = $messanger
+        match:class = ^(com.ayugram.desktop)$
+        float = true
+        center = true
+        size = (monitor_w*0.9) (monitor_h*0.9)
+      }
 
-       #"float,class:^(org.pulseaudio.pavucontrol)$"
-       #"center,class:^(org.pulseaudio.pavucontrol)$"
-        #"size 700 450,class:^(org.pulseaudio.pavucontrol)$"
+      windowrule {
+          name = picture_in_picture
+          match:title = ^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$
+          tag = +picture-in-picture
+          float = true
+          keep_aspect_ratio = true
+          move = (monitor_w*0.74) (monitor_h*0.76)
+          size = (monitor_w*0.25) (monitor_h*0.225)
+          pin = true
+      }
 
-        #"float,title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-        #"pin,title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-        #"keepaspectratio,title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-        #"size 25% 22.5%,title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-        #"move 74% 76%,title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
+      windowrule {
+          # Ignore maximize requests from all apps. You'll probably like this.
+          name = suppress-maximize-events
+          match:class = .*
 
-        # "float,class:^(otter-launcher)$"
-        # "center,class:^(otter-launcher)$"
-        # "float,class:^(com.network.manager)$"
-        # "float,class:^(org.pulseaudio.pavucontrol)$"
-        # "float,class:^(koala-clash)$"
-        # "suppress_event maximize,class:.*"
+          suppress_event = maximize
+      }
 
-        # "suppressmaximize,class:.*"
-        # "noanim,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        # "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      ];
-    };
-  };
+      windowrule {
+          # Fix some dragging issues with XWayland
+          name = fix-xwayland-drags
+          match:class = ^$
+          match:title = ^$
+          match:xwayland = true
+          match:float = true
+          match:fullscreen = false
+          match:pin = false
+
+          no_focus = true
+      }
+    '';
 }
