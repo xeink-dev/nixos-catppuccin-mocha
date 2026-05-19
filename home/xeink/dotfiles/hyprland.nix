@@ -157,7 +157,14 @@ in
         }
       }
 
-      # gestures = 3, horizontal, workspace
+      gesture = 3, horizontal, workspace
+
+      gestures {
+        workspace_swipe_use_r = true
+        workspace_swipe_distance = 250
+        workspace_swipe_min_speed_to_force = 5
+        workspace_swipe_forever = true;
+      }
 
       ###################
       ### KEYBINDINGS ###
@@ -171,8 +178,10 @@ in
       bind = $main, B, exec, $browser
       bind = $main ALT, B, exec, chromium
       bind = $main, C, exec, $code
+      bind = $main ALT, C, exec, code
       bind = $main, E, exec, $explorer
       bind = $main, A, exec, rofi -show drun
+      bind = $main, Space, exec, anyrun
       bind = $main CTRL, L, exec, hyprlock
       bind = $main, M, exec, $messanger
       bind = $main, O, exec, obsidian
@@ -190,8 +199,8 @@ in
       bind = $main, T, exec, $terminal bluetuith
       bind = $main, P, exec, $terminal pulsemixer
 
-      bind = bind = $main ALT, R, exec, reboot
-      bind = bind = $main ALT, P, exec, poweroff
+      bindl = bind = $main ALT, R, exec, reboot
+      bindl = bind = $main ALT, P, exec, poweroff
 
       bind = $main, Q, killactive,
       bind = $main Alt, Q, exec, hyprctl clients -j | jq -r \".[] | select(.workspace.id == $(hyprctl activeworkspace -j | jq '.id')) | .address\" | xargs -I {} hyprctl dispatch closewindow address:{}

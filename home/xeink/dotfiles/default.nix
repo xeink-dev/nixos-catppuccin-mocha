@@ -16,5 +16,6 @@
     ./fish.nix
     # ./niri.nix
     ./hyprpaper.nix
+    ./anyrun.nix
   ];
 }

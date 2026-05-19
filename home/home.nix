@@ -17,7 +17,6 @@ let
     fish
     grc
     qalculate-gtk
-    bottles
   ];
 
   gui = with pkgs; [
@@ -55,6 +54,7 @@ let
     gh
     bun
     pencil
+    filezilla
 
     # SYSTEM
     pkg-config
@@ -107,7 +107,7 @@ let
     eog
     vlc
     kdePackages.kdenlive
-    gimp2-with-plugins
+    gimp-with-plugins
     youtube-music
   ];
 

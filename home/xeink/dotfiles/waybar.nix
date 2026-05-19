@@ -70,6 +70,7 @@
           format = "<span color='${c.lavender}'>󰌏</span> {}";
           format-en = "EN";
           format-ru = "RU";
+          on-click = "hyprctl switchxkblayout current next";
         };
 
 
@@ -271,13 +272,8 @@
         border-radius: 20px;
       }
 
-      #language {
-        padding: 2px 15px;
-        margin: 5px;
-        color: ${c.text};
-        background-color: ${c.mantle};
-        border: none;
-        border-radius: 20px;
+      #language:hover {
+        color: ${c.yellow};
       }
 
       #pulseaudio {

@@ -11,6 +11,8 @@
       efiSupport = true;
       configurationLimit = 10;
 
+      useOSProber = true;
+
       theme = pkgs.fetchFromGitHub {
         owner = "catppuccin";
         repo = "grub";
